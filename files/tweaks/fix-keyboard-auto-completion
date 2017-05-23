@@ -1,0 +1,30 @@
+<?php
+/*
+https://ubuntuforums.org/showthread.php?t=1771058&s=3835dc2a77dd0b9a0502a3385ab7dc3e&p=11107297#post11107297
+
+edit
+
+~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+
+find the line
+
+<property name="&lt;Super&gt;Tab" type="string" value="switch_window_key"/>
+
+and change it to
+
+<property name="&lt;Super&gt;Tab" type="empty"/>
+
+reboot 
+*/
+
+$xml_file = '/home/user1/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml';
+
+if (is_file($xml_file)) {
+	$content = file_get_contents($xml_file);
+	$content = str_replace('<property name="&lt;Super&gt;Tab" type="string" value="switch_window_key"/>', '<!-- <property name="&lt;Super&gt;Tab" type="string" value="switch_window_key"/> --><property name="&lt;Super&gt;Tab" type="empty"/>', $content);
+	file_put_contents($xml_file, $content);
+	echo("\nxfce4-keyboard-shortcuts.xml modified\n");
+	sleep(1);
+}
+
+?>

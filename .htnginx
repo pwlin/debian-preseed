@@ -1,0 +1,109 @@
+
+#user  nobody;
+worker_processes  1;
+
+error_log  "D:/tmp/glob/nginx/logs/error.log";
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+pid        "D:/tmp/glob/nginx/logs/nginx.pid";
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       "d:/programs/dev/bin/sbin/nginx/1.11.5/conf/mime.types";
+    default_type  application/octet-stream;
+	log_not_found off;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+	access_log off;
+	
+	client_body_temp_path "D:/tmp/glob/nginx/temp/client_body_temp";
+	proxy_temp_path "D:/tmp/glob/nginx/temp/proxy_temp";
+	fastcgi_temp_path "D:/tmp/glob/nginx/temp/fastcgi_temp";
+	scgi_temp_path "D:/tmp/glob/nginx/temp/scgi_temp";
+	uwsgi_temp_path "D:/tmp/glob/nginx/temp/uwsgi_temp";
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+	
+	open_file_cache off;
+	expires -1;
+	etag off;
+	
+	
+
+    server {
+        listen       192.168.0.21:80;
+        server_name  pokemon;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+		access_log off;
+
+        location / {
+			autoindex on;
+            root   "D:/Workspace/projects/debian-preseed";
+            index  index.php index.html index.htm;
+			#if (!-e $request_filename){ 
+			#	rewrite ^/(.*)$ /index.php last; 
+			#}
+        }
+
+        #error_page  404              /404.html;
+		error_page   404  /404.html;
+        location = /404.html {
+            root   "d:/programs/dev/bin/sbin/nginx/1.11.5/html-errors";
+			internal;
+        }
+		
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   "d:/programs/dev/bin/sbin/nginx/1.11.5/html-errors";
+			internal;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:82
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1:82;
+        #}
+
+        location ~ \.php$ {
+			try_files  $uri =404;
+            root           "D:/Workspace/projects/debian-preseed";
+            fastcgi_pass   127.0.0.1:8001;
+            fastcgi_index  index.php;
+            #fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+			fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        "d:/programs/dev/bin/sbin/nginx/1.11.5/conf/fastcgi_params";
+        }
+		
+		#location /some_alias {
+		#	if (!-e $request_filename){ 
+		#		rewrite ^/some_alias/(.*)$ /some_alias/index.php last; 
+		#	}
+        #}
+		
+
+        location ~ /\.ht {
+            #deny  all;
+			return 404;
+        }
+    }
+
+}

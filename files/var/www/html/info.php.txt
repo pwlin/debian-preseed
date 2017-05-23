@@ -1,0 +1,17 @@
+<?php
+
+ob_start();
+phpinfo();
+$phpinfo = ob_get_clean();
+
+$mysql_info = '';
+try{
+    $dbh = new pdo('mysql:host=localhost', 'user1', '1234', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    $mysql_info = '<p style="color:green;font-weight:bold">PDO MYSQL is working: user1@localhost</p>';
+} catch(PDOException $ex) {
+    $mysql_info = '<p style="color:red;font-weight:bold">PDO MYSQL is NOT working: <b>' . $ex->getMessage() . '</b></p>';
+}
+
+$phpinfo = preg_replace('/<body>/', '<body>' . $mysql_info, $phpinfo);
+
+echo($phpinfo);
