@@ -88,6 +88,10 @@ From `Steve Pusser's software.opensuse.org`:
 
     palemoon
     
+From `download.virtualbox.org`
+
+    VBoxGuestAdditions_$VBOX_VER.iso
+    
 From `eclipse.org`:
 
     eclipse
