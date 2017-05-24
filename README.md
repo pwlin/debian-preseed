@@ -77,6 +77,7 @@ From `official debian testing`:
     php-xdebug 
     default-mysql-server 
     adminer
+    libgconf-2-4
 
 
 From `deb.nodesource.com`:

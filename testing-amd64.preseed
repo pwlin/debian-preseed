@@ -113,11 +113,8 @@ tasksel	tasksel/tasks	multiselect
 
 d-i pkgsel/include string aptitude localepurge curl mc bash-completion tar bzip2 zip unzip openssh-server debconf-utils
 
-# other stuff that can be installed:
-#tightvncserver default-jre default-jdk
 # Built-in Vbox packages do not work anymore:
 #virtualbox-guest-x11 virtualbox-guest-dkms
-
 
 # https://anonscm.debian.org/cgit/collab-maint/localepurge.git/tree/debian/localepurge.templates
 ### Pkg:localepurge

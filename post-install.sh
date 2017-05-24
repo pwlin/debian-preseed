@@ -31,21 +31,22 @@ function apt-init() {
 }
 
 function apt-init-remove() {
-	sudo apt-get -y remove --purge 	task-english \
-									ispell \
-									wamerican \
-									ienglish-common \
-									iamerican \
-									ibritish \
-									dictionaries-common \
-									util-linux-locales \
-									vim-tiny \
-									vim-common \
-									xxd \
-									manpages \
-									manpages-dev \
-									tcpd \
-									unar
+	sudo apt-get -y remove --purge \
+		task-english \
+		ispell \
+		wamerican \
+		ienglish-common \
+		iamerican \
+		ibritish \
+		dictionaries-common \
+		util-linux-locales \
+		vim-tiny \
+		vim-common \
+		xxd \
+		manpages \
+		manpages-dev \
+		tcpd \
+		unar
 	sudo apt-get update
 	sudo apt-get -y autoremove
 }
@@ -55,47 +56,49 @@ function apt-init-install() {
 	if [ ${OS_ARCH} == 'x86_64' ]; then
 		LINUX_HEADERS=linux-headers-amd64
 	fi
-	# greybird-gtk-theme dirmngr
-	sudo apt-get -y install $LINUX_HEADERS \
-							build-essential \
-							module-assistant \
-							xorg htop \
-							tinyca \
-							default-jre \
-							fonts-droid-fallback\
-							unrar-free \
-							subversion \
-							git \
-							locate \
-							cifs-utils \
-							lsof \
-							xfce4 \
-							xdg-utils \
-							desktop-base \
-							dmz-cursor-theme \
-							xfce4-cpugraph-plugin \
-							lxterminal \
-							thunar-archive-plugin \
-							faenza-icon-theme \
-							gtk2-engines-murrine \
-							gnome-icon-theme \
-							gpicview nomacs \
-							leafpad \
-							geany \
-							xarchiver \
-							cabextract \
-							apache2 \
-							ssl-cert \
-							libapache2-mod-php \
-							php-mysql \
-							php-sqlite3 \
-							php-gd \
-							php-cli \
-							php-curl \
-							php-mcrypt \
-							php-xdebug \
-							default-mysql-server \
-							adminer
+	# greybird-gtk-theme dirmngr tightvncserver default-jdk
+	sudo apt-get -y install \
+		$LINUX_HEADERS \
+		build-essential \
+		module-assistant \
+		xorg htop \
+		tinyca \
+		default-jre \
+		fonts-droid-fallback\
+		unrar-free \
+		subversion \
+		git \
+		locate \
+		cifs-utils \
+		lsof \
+		xfce4 \
+		xdg-utils \
+		desktop-base \
+		dmz-cursor-theme \
+		xfce4-cpugraph-plugin \
+		lxterminal \
+		thunar-archive-plugin \
+		faenza-icon-theme \
+		gtk2-engines-murrine \
+		gnome-icon-theme \
+		gpicview nomacs \
+		leafpad \
+		geany \
+		xarchiver \
+		cabextract \
+		apache2 \
+		ssl-cert \
+		libapache2-mod-php \
+		php-mysql \
+		php-sqlite3 \
+		php-gd \
+		php-cli \
+		php-curl \
+		php-mcrypt \
+		php-xdebug \
+		default-mysql-server \
+		adminer \
+		libgconf-2-4
 }
 
 function install-nodejs() {
