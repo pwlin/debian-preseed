@@ -17,9 +17,9 @@ Usage:
 4- After first install, login with `user1/1234` credentials and run:
 
     bash post-install.sh
-    
+
 When asked for sudo password, use `1234`.
-    
+
 5 - Now grab a cup of tea while everything is getting installed.
 
 Included packages
@@ -78,21 +78,22 @@ From `official debian testing`:
     default-mysql-server 
     adminer
     libgconf-2-4
+    qcachegrind
 
 
 From `deb.nodesource.com`:
 
     nodejs
-    
+
 
 From `Steve Pusser's software.opensuse.org`:
 
     palemoon
-    
+
 From `download.virtualbox.org`
 
     VBoxGuestAdditions_$VBOX_VER.iso
-    
+
 From `eclipse.org`:
 
     eclipse

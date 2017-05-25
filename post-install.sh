@@ -98,7 +98,8 @@ function apt-init-install() {
 		php-xdebug \
 		default-mysql-server \
 		adminer \
-		libgconf-2-4
+		libgconf-2-4 \
+		qcachegrind 
 }
 
 function install-nodejs() {
@@ -230,10 +231,13 @@ function configure-user-dirs-file() {
 function restore-desktop-icons() {
 	curl $PRESEED_SERVER/files/profile/exo-terminal-emulator.desktop > $POSTINSTALL_DIR/exo-terminal-emulator.desktop
 	cp $POSTINSTALL_DIR/exo-terminal-emulator.desktop /home/user1/Desktop/exo-terminal-emulator.desktop
+	chmod +x /home/user1/Desktop/exo-terminal-emulator.desktop
 	curl $PRESEED_SERVER/files/profile/eclipse.desktop > $POSTINSTALL_DIR/eclipse.desktop
 	cp $POSTINSTALL_DIR/eclipse.desktop /home/user1/Desktop/eclipse.desktop
+	chmod +x /home/user1/Desktop/eclipse.desktop
 	curl $PRESEED_SERVER/files/profile/palemoon.desktop > $POSTINSTALL_DIR/palemoon.desktop
 	cp $POSTINSTALL_DIR/palemoon.desktop /home/user1/Desktop/palemoon.desktop
+	chmod +x /home/user1/Desktop/palemoon.desktop
 }
 
 function enable-auto-login() {
@@ -274,6 +278,7 @@ function configure-LAMP() {
 	curl $PRESEED_SERVER/files/var/www/html/info.php.txt > $POSTINSTALL_DIR/info.php
 	cp $POSTINSTALL_DIR/info.php /var/www/html/info.php
 	ln -sf /usr/share/adminer/adminer /var/www/html/adminer
+	sudo a2enmod rewrite
 }
 
 function install-vbox-guest-additions() {
