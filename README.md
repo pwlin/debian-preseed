@@ -44,38 +44,41 @@ From `official debian testing`:
     tinyca
     default-jre
     fonts-droid-fallback
-    unrar-free 
-    subversion 
-    git 
-    locate 
-    cifs-utils 
-    lsof 
-    xfce4 
-    xdg-utils 
-    desktop-base 
-    dmz-cursor-theme 
-    xfce4-cpugraph-plugin 
-    lxterminal 
-    thunar-archive-plugin 
-    faenza-icon-theme 
-    gtk2-engines-murrine 
-    gnome-icon-theme 
-    gpicview nomacs 
-    leafpad 
-    geany 
-    xarchiver 
-    cabextract 
-    apache2 
-    ssl-cert 
-    libapache2-mod-php 
-    php-mysql 
-    php-sqlite3 
-    php-gd 
-    php-cli 
-    php-curl 
-    php-mcrypt 
-    php-xdebug 
-    default-mysql-server 
+    unrar-free
+    subversion
+    git
+    locate
+    cifs-utils
+    lsof
+    xfce4
+    xdg-utils
+    desktop-base
+    dmz-cursor-theme
+    xfce4-cpugraph-plugin
+    lxterminal
+    thunar-archive-plugin
+    faenza-icon-theme
+    gtk2-engines-murrine
+    gnome-icon-theme
+    gpicview nomacs
+    leafpad
+    geany
+    xarchiver
+    cabextract
+    apache2
+    ssl-cert
+    libapache2-mod-php
+    php-mysql
+    php-sqlite3
+    php-gd
+    php-cli
+    php-curl
+    php-mcrypt
+	php-mbstring
+    php-dom
+	composer
+    php-xdebug
+    default-mysql-server
     adminer
     libgconf-2-4
     qcachegrind

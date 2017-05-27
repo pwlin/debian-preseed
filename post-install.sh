@@ -95,11 +95,14 @@ function apt-init-install() {
 		php-cli \
 		php-curl \
 		php-mcrypt \
+		php-mbstring \
+		php-dom \
+		composer \
 		php-xdebug \
 		default-mysql-server \
 		adminer \
 		libgconf-2-4 \
-		qcachegrind 
+		qcachegrind
 }
 
 function install-nodejs() {
@@ -223,21 +226,14 @@ function restore-config-dir() {
 	unzip -u -q $POSTINSTALL_DIR/user-config.zip -d /home/user1
 }
 
-function configure-user-dirs-file() {
-	curl $PRESEED_SERVER/files/profile/user-dirs.dirs > $POSTINSTALL_DIR/user-dirs.dirs
-	cp $POSTINSTALL_DIR/user-dirs.dirs /home/user1/.config/user-dirs.dirs
-}
-
 function restore-desktop-icons() {
-	curl $PRESEED_SERVER/files/profile/exo-terminal-emulator.desktop > $POSTINSTALL_DIR/exo-terminal-emulator.desktop
-	cp $POSTINSTALL_DIR/exo-terminal-emulator.desktop /home/user1/Desktop/exo-terminal-emulator.desktop
-	chmod +x /home/user1/Desktop/exo-terminal-emulator.desktop
-	curl $PRESEED_SERVER/files/profile/eclipse.desktop > $POSTINSTALL_DIR/eclipse.desktop
-	cp $POSTINSTALL_DIR/eclipse.desktop /home/user1/Desktop/eclipse.desktop
-	chmod +x /home/user1/Desktop/eclipse.desktop
-	curl $PRESEED_SERVER/files/profile/palemoon.desktop > $POSTINSTALL_DIR/palemoon.desktop
-	cp $POSTINSTALL_DIR/palemoon.desktop /home/user1/Desktop/palemoon.desktop
-	chmod +x /home/user1/Desktop/palemoon.desktop
+	icon_files=( exo-terminal-emulator eclipse palemoon )
+	for i in "${icon_files[@]}"
+	do
+		curl $PRESEED_SERVER/files/profile/$i.desktop > $POSTINSTALL_DIR/$i.desktop
+		cp $POSTINSTALL_DIR/$i.desktop /home/user1/Desktop/$i.desktop
+		chmod +x /home/user1/Desktop/$i.desktop
+	done
 }
 
 function enable-auto-login() {
@@ -325,7 +321,6 @@ configure-bash-aliases
 enable-color-prompt
 configure-console-setup
 restore-config-dir
-configure-user-dirs-file
 restore-desktop-icons
 enable-auto-login
 restore-geany-icons
