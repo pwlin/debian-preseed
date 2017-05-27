@@ -275,6 +275,11 @@ function configure-LAMP() {
 	cp $POSTINSTALL_DIR/info.php /var/www/html/info.php
 	ln -sf /usr/share/adminer/adminer /var/www/html/adminer
 	sudo a2enmod rewrite
+	curl $PRESEED_SERVER/files/etc/apache2/sites-available/000-localhost.conf > $POSTINSTALL_DIR/000-localhost.conf
+	sudo cp $POSTINSTALL_DIR/000-localhost.conf /etc/apache2/sites-available/000-localhost.conf
+	sudo chown root:root /etc/apache2/sites-available/000-localhost.conf
+	sudo a2dissite 000-default
+	sudo a2ensite 000-localhost
 }
 
 function install-vbox-guest-additions() {
