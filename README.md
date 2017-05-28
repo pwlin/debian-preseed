@@ -62,7 +62,6 @@ From `official debian testing`:
     gnome-icon-theme
     gpicview nomacs
     leafpad
-    geany
     xarchiver
     cabextract
     apache2
@@ -103,5 +102,7 @@ From `eclipse.org`:
     org.eclipse.php.feature.group
     com.spket.ui.feature.group (spket.com)
 
+From `sublimetext.com`
 
+    sublime-text_build-3126_amd64.deb
 

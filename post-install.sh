@@ -56,7 +56,7 @@ function apt-init-install() {
 	if [ ${OS_ARCH} == 'x86_64' ]; then
 		LINUX_HEADERS=linux-headers-amd64
 	fi
-	# greybird-gtk-theme dirmngr tightvncserver default-jdk
+	# greybird-gtk-theme dirmngr tightvncserver default-jdk geany
 	sudo apt-get -y install \
 		$LINUX_HEADERS \
 		build-essential \
@@ -83,7 +83,6 @@ function apt-init-install() {
 		gnome-icon-theme \
 		gpicview nomacs \
 		leafpad \
-		geany \
 		xarchiver \
 		cabextract \
 		apache2 \
@@ -120,6 +119,11 @@ function install-palemoon() {
 	sudo apt-get install -y palemoon
 	curl $PRESEED_SERVER/files/backups/palemoon-profile.zip > $POSTINSTALL_DIR/palemoon-profile.zip
 	unzip -u -q $POSTINSTALL_DIR/palemoon-profile.zip -d /home/user1
+}
+
+function install-sublime-text() {
+	curl -L https://download.sublimetext.com/sublime-text_build-3126_amd64.deb > $POSTINSTALL_DIR/sublime-text.deb
+	sudo dpkg -i $POSTINSTALL_DIR/sublime-text.deb
 }
 
 function apt-configure-localepurge {
@@ -315,6 +319,7 @@ apt-init-remove
 apt-init-install
 install-nodejs
 install-palemoon
+install-sublime-text
 apt-configure-localepurge
 apt-finish
 install-themes-faenza-cupertino
@@ -328,7 +333,7 @@ configure-console-setup
 restore-config-dir
 restore-desktop-icons
 enable-auto-login
-restore-geany-icons
+#restore-geany-icons
 configure-LAMP
 install-vbox-guest-additions
 install-eclipse
