@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Eclipse
-GenericName=Eclipse
-Comment=
-Exec=/home/user1/Programs/eclipse/eclipse
-Terminal=false
-Type=Application
-Icon=/home/user1/Programs/eclipse/icon.xpm
-StartupNotify=true

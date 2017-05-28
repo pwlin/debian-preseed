@@ -40,7 +40,8 @@ From `official debian testing`:
     $LINUX_HEADERS
     build-essential
     module-assistant
-    xorg htop
+    xorg
+    htop
     tinyca
     default-jre
     fonts-droid-fallback
@@ -60,7 +61,8 @@ From `official debian testing`:
     faenza-icon-theme
     gtk2-engines-murrine
     gnome-icon-theme
-    gpicview nomacs
+    gpicview
+    nomacs
     leafpad
     xarchiver
     cabextract

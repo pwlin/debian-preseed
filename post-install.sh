@@ -209,11 +209,6 @@ function fix-keyboard-auto-completion() {
 	php $POSTINSTALL_DIR/fix-keyboard-auto-completion.php
 }
 
-function configure-bash-aliases() {
-	curl $PRESEED_SERVER/files/profile/.bash_aliases > $POSTINSTALL_DIR/.bash_aliases
-	cp $POSTINSTALL_DIR/.bash_aliases /home/user1/.bash_aliases
-}
-
 function enable-color-prompt() {
 	sed -i -e 's/#force_color_prompt=yes/force_color_prompt=yes/g' /home/user1/.bashrc
 }
@@ -224,18 +219,13 @@ function configure-console-setup() {
 	sudo chown root:root /etc/default/console-setup	
 }
 
-function restore-config-dir() {
+function restore-user-profile() {
 	sudo rm -rf /home/user1/.config > /dev/null
-	curl $PRESEED_SERVER/files/backups/user-config.zip > $POSTINSTALL_DIR/user-config.zip
-	unzip -u -q $POSTINSTALL_DIR/user-config.zip -d /home/user1
-}
-
-function restore-desktop-icons() {
+	curl $PRESEED_SERVER/files/backups/user-profile.zip > $POSTINSTALL_DIR/user-profile.zip
+	unzip -u -q $POSTINSTALL_DIR/user-profile.zip -d /home/user1
 	icon_files=( exo-terminal-emulator eclipse palemoon )
 	for i in "${icon_files[@]}"
 	do
-		curl $PRESEED_SERVER/files/profile/$i.desktop > $POSTINSTALL_DIR/$i.desktop
-		cp $POSTINSTALL_DIR/$i.desktop /home/user1/Desktop/$i.desktop
 		chmod +x /home/user1/Desktop/$i.desktop
 	done
 }
@@ -248,19 +238,6 @@ function enable-auto-login() {
 	sudo chown root:root /etc/systemd/system/getty@tty1.service.d/override.conf
 	sudo systemctl set-default multi-user.target
 	printf "\n\n[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && exec startx\n\n" >> /home/user1/.profile
-}
-
-function restore-geany-icons() {
-	icon_files=( 16 22 24 32 48 64 96 )
-	for i in "${icon_files[@]}"
-	do
-		curl $PRESEED_SERVER/files/icons/geany/geany-$i.png > $POSTINSTALL_DIR/geany-$i.png
-		sudo cp $POSTINSTALL_DIR/geany-$i.png /usr/share/icons/Faenza/apps/$i/geany.png
-		sudo chown root:root /usr/share/icons/Faenza/apps/$i/geany.png
-	done
-	curl $PRESEED_SERVER/files/icons/geany/geany-48.svg > $POSTINSTALL_DIR/geany-48.svg
-	sudo cp $POSTINSTALL_DIR/geany-48.svg /usr/share/icons/Faenza/apps/scalable/geany.svg
-	sudo chown root:root /usr/share/icons/Faenza/apps/scalable/geany.svg
 }
 
 function configure-LAMP() {
@@ -327,13 +304,11 @@ install-wallpapers
 install-fonts
 #setup-vnc
 fix-keyboard-auto-completion
-configure-bash-aliases
 enable-color-prompt
 configure-console-setup
-restore-config-dir
+restore-user-profile
 restore-desktop-icons
 enable-auto-login
-#restore-geany-icons
 configure-LAMP
 install-vbox-guest-additions
 install-eclipse
@@ -344,3 +319,4 @@ sudo localepurge
 history -cw
 
 sudo reboot
+
